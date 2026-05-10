@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Flores Neon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Flowers 3D</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -15,168 +16,322 @@
 body{
     overflow:hidden;
     height:100vh;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    background:
+    radial-gradient(circle at center,#0b0014 0%,#000 70%);
+    perspective:1200px;
     font-family:Arial, Helvetica, sans-serif;
 }
 
-/* Fondo animado */
-.background{
-    position:absolute;
+/* FONDO */
+.scene{
+    position:relative;
     width:100%;
-    height:100%;
-    background:
-    radial-gradient(circle at center, #050505 0%, #000 70%);
-}
-
-/* Raíces */
-.roots{
-    position:absolute;
-    width:100%;
-    height:100%;
+    height:100vh;
     overflow:hidden;
 }
 
-.root{
+/* PARTÍCULAS */
+.particle{
     position:absolute;
-    bottom:-200px;
-    width:4px;
-    background:linear-gradient(to top,#111,#333,#00ff88);
-    border-radius:50px;
-    transform-origin:bottom;
-    animation:grow 5s ease-in-out infinite alternate;
-    box-shadow:0 0 10px #00ff88;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.7;
+    animation:float linear infinite;
+    box-shadow:
+    0 0 10px white,
+    0 0 20px cyan,
+    0 0 30px magenta;
 }
 
-@keyframes grow{
+@keyframes float{
     from{
-        height:0;
-        opacity:0;
+        transform:translateY(100vh) scale(0);
     }
     to{
-        height:120vh;
-        opacity:1;
+        transform:translateY(-120vh) scale(1);
     }
 }
 
-/* Flores */
+/* LLUVIA BRILLANTE */
+.rain{
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:linear-gradient(transparent,cyan);
+    opacity:.4;
+    animation:rain 2s linear infinite;
+    filter:blur(1px);
+}
+
+@keyframes rain{
+    from{
+        transform:translateY(-100vh);
+    }
+    to{
+        transform:translateY(100vh);
+    }
+}
+
+/* TALLOS */
+.stem{
+    position:absolute;
+    bottom:-300px;
+    width:8px;
+    height:500px;
+    background:linear-gradient(to top,#031,#0f6,#9ff);
+    border-radius:20px;
+    transform-origin:bottom;
+    animation:growStem 6s ease forwards;
+    box-shadow:
+    0 0 20px #00ff88,
+    0 0 40px #00ff88;
+}
+
+@keyframes growStem{
+    from{
+        transform:scaleY(0);
+    }
+    to{
+        transform:scaleY(1);
+    }
+}
+
+/* FLORES */
 .flower{
     position:absolute;
-    width:120px;
-    height:120px;
-    animation:float 5s ease-in-out infinite;
+    width:180px;
+    height:180px;
+    transform-style:preserve-3d;
+    animation:
+    flowerAppear 6s ease forwards,
+    rotateFlower 12s linear infinite;
+    opacity:0;
 }
 
-/* pétalos */
+@keyframes flowerAppear{
+    0%{
+        opacity:0;
+        transform:scale(0) rotateX(90deg);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1) rotateX(0deg);
+    }
+}
+
+@keyframes rotateFlower{
+    0%{
+        transform:rotateY(0deg);
+    }
+    100%{
+        transform:rotateY(360deg);
+    }
+}
+
+/* PÉTALOS */
 .petal{
     position:absolute;
-    width:50px;
-    height:80px;
-    border-radius:50%;
+    width:70px;
+    height:120px;
+    left:55px;
     top:20px;
-    left:35px;
+    border-radius:50%;
     transform-origin:center bottom;
-    opacity:0.9;
-    filter:blur(0.5px);
+    opacity:.9;
+    filter:blur(.5px);
 }
 
-/* centro */
+/* CENTRO */
 .center{
     position:absolute;
-    width:35px;
-    height:35px;
-    background:#fff700;
+    width:45px;
+    height:45px;
+    background:#fff176;
     border-radius:50%;
-    top:42px;
-    left:42px;
-    z-index:10;
+    left:68px;
+    top:68px;
+    z-index:100;
     box-shadow:
-    0 0 20px #fff700,
-    0 0 40px #fff700,
-    0 0 80px #fff700;
+    0 0 20px #fff176,
+    0 0 40px #fff176,
+    0 0 80px #fff176;
 }
 
-/* Animación */
-@keyframes float{
-    0%,100%{
-        transform:translateY(0px) scale(1);
-    }
-    50%{
-        transform:translateY(-20px) scale(1.05);
-    }
-}
-
-/* Texto */
+/* TEXTO */
 .title{
     position:absolute;
     top:30px;
+    width:100%;
+    text-align:center;
     color:white;
-    font-size:2rem;
-    letter-spacing:4px;
+    font-size:3rem;
+    letter-spacing:5px;
     text-shadow:
-    0 0 10px #00ffff,
-    0 0 20px #00ffff,
-    0 0 40px #00ffff;
-    z-index:100;
+    0 0 10px cyan,
+    0 0 20px magenta,
+    0 0 50px cyan;
+    z-index:999;
+    animation:pulse 3s infinite;
 }
+
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+    }
+    50%{
+        opacity:.6;
+    }
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+    rgba(0,255,255,.15),
+    transparent 70%);
+    filter:blur(50px);
+    animation:moveGlow 12s infinite alternate;
+}
+
+@keyframes moveGlow{
+    from{
+        transform:translate(-100px,-50px);
+    }
+    to{
+        transform:translate(100px,50px);
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="scene">
 
-<div class="title">🌸 FLORES NEON 🌸</div>
+<div class="title">🌸 NEON FLOWERS 3D 🌸</div>
 
-<!-- Raíces -->
-<div class="roots">
-    <div class="root" style="left:10%; animation-delay:0s; transform:rotate(-10deg);"></div>
-    <div class="root" style="left:20%; animation-delay:1s; transform:rotate(12deg);"></div>
-    <div class="root" style="left:35%; animation-delay:2s; transform:rotate(-5deg);"></div>
-    <div class="root" style="left:50%; animation-delay:1.5s; transform:rotate(8deg);"></div>
-    <div class="root" style="left:65%; animation-delay:0.5s; transform:rotate(-15deg);"></div>
-    <div class="root" style="left:80%; animation-delay:2.5s; transform:rotate(10deg);"></div>
+<div class="glow"></div>
+
+<!-- PARTÍCULAS -->
+<script>
+for(let i=0;i<120;i++){
+
+    let p=document.createElement('div');
+    p.className='particle';
+
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(5+Math.random()*10)+'s';
+    p.style.animationDelay=Math.random()*10+'s';
+
+    document.body.appendChild(p);
+}
+
+/* LLUVIA */
+for(let i=0;i<80;i++){
+
+    let r=document.createElement('div');
+    r.className='rain';
+
+    r.style.left=Math.random()*100+'vw';
+    r.style.animationDuration=(1+Math.random()*2)+'s';
+    r.style.animationDelay=Math.random()*5+'s';
+
+    document.body.appendChild(r);
+}
+</script>
+
+<!-- TALLOS -->
+<div class="stem" style="left:20%; transform:rotate(-8deg);"></div>
+<div class="stem" style="left:50%; transform:rotate(3deg);"></div>
+<div class="stem" style="left:75%; transform:rotate(10deg);"></div>
+
+<!-- FLOR 1 -->
+<div class="flower" style="top:10%; left:12%;">
+
+<div class="petal" style="
+background:#ff00ff;
+transform:rotate(0deg) translateY(-45px);
+box-shadow:0 0 20px #ff00ff,
+0 0 50px #ff00ff;"></div>
+
+<div class="petal" style="
+background:#00ffff;
+transform:rotate(45deg) translateY(-45px);
+box-shadow:0 0 20px #00ffff,
+0 0 50px #00ffff;"></div>
+
+<div class="petal" style="
+background:#00ff99;
+transform:rotate(90deg) translateY(-45px);
+box-shadow:0 0 20px #00ff99,
+0 0 50px #00ff99;"></div>
+
+<div class="petal" style="
+background:#ff3366;
+transform:rotate(135deg) translateY(-45px);
+box-shadow:0 0 20px #ff3366,
+0 0 50px #ff3366;"></div>
+
+<div class="petal" style="
+background:#7c4dff;
+transform:rotate(180deg) translateY(-45px);
+box-shadow:0 0 20px #7c4dff,
+0 0 50px #7c4dff;"></div>
+
+<div class="petal" style="
+background:#00e5ff;
+transform:rotate(225deg) translateY(-45px);
+box-shadow:0 0 20px #00e5ff,
+0 0 50px #00e5ff;"></div>
+
+<div class="petal" style="
+background:#76ff03;
+transform:rotate(270deg) translateY(-45px);
+box-shadow:0 0 20px #76ff03,
+0 0 50px #76ff03;"></div>
+
+<div class="petal" style="
+background:#ff1744;
+transform:rotate(315deg) translateY(-45px);
+box-shadow:0 0 20px #ff1744,
+0 0 50px #ff1744;"></div>
+
+<div class="center"></div>
+
 </div>
 
-<!-- Flores -->
-<div class="flower" style="top:20%; left:20%;">
-    <div class="petal" style="background:#ff00ff; transform:rotate(0deg) translateY(-30px);
-    box-shadow:0 0 20px #ff00ff,0 0 50px #ff00ff;"></div>
+<!-- FLOR 2 -->
+<div class="flower" style="top:25%; left:42%; animation-delay:1s;">
 
-    <div class="petal" style="background:#00ffff; transform:rotate(72deg) translateY(-30px);
-    box-shadow:0 0 20px #00ffff,0 0 50px #00ffff;"></div>
+<div class="petal" style="background:#00ffff; transform:rotate(0deg) translateY(-45px); box-shadow:0 0 25px #00ffff;"></div>
+<div class="petal" style="background:#ff00ff; transform:rotate(60deg) translateY(-45px); box-shadow:0 0 25px #ff00ff;"></div>
+<div class="petal" style="background:#39ff14; transform:rotate(120deg) translateY(-45px); box-shadow:0 0 25px #39ff14;"></div>
+<div class="petal" style="background:#ff9100; transform:rotate(180deg) translateY(-45px); box-shadow:0 0 25px #ff9100;"></div>
+<div class="petal" style="background:#651fff; transform:rotate(240deg) translateY(-45px); box-shadow:0 0 25px #651fff;"></div>
+<div class="petal" style="background:#ff1744; transform:rotate(300deg) translateY(-45px); box-shadow:0 0 25px #ff1744;"></div>
 
-    <div class="petal" style="background:#00ff66; transform:rotate(144deg) translateY(-30px);
-    box-shadow:0 0 20px #00ff66,0 0 50px #00ff66;"></div>
+<div class="center"></div>
 
-    <div class="petal" style="background:#ff0066; transform:rotate(216deg) translateY(-30px);
-    box-shadow:0 0 20px #ff0066,0 0 50px #ff0066;"></div>
-
-    <div class="petal" style="background:#9900ff; transform:rotate(288deg) translateY(-30px);
-    box-shadow:0 0 20px #9900ff,0 0 50px #9900ff;"></div>
-
-    <div class="center"></div>
 </div>
 
-<div class="flower" style="top:55%; left:60%; animation-delay:2s;">
-    <div class="petal" style="background:#00ffff; transform:rotate(0deg) translateY(-30px);
-    box-shadow:0 0 20px #00ffff,0 0 50px #00ffff;"></div>
+<!-- FLOR 3 -->
+<div class="flower" style="top:15%; left:68%; animation-delay:2s;">
 
-    <div class="petal" style="background:#ff00ff; transform:rotate(72deg) translateY(-30px);
-    box-shadow:0 0 20px #ff00ff,0 0 50px #ff00ff;"></div>
+<div class="petal" style="background:#00e5ff; transform:rotate(0deg) translateY(-45px); box-shadow:0 0 25px #00e5ff;"></div>
+<div class="petal" style="background:#ff3d00; transform:rotate(72deg) translateY(-45px); box-shadow:0 0 25px #ff3d00;"></div>
+<div class="petal" style="background:#76ff03; transform:rotate(144deg) translateY(-45px); box-shadow:0 0 25px #76ff03;"></div>
+<div class="petal" style="background:#e040fb; transform:rotate(216deg) translateY(-45px); box-shadow:0 0 25px #e040fb;"></div>
+<div class="petal" style="background:#00b0ff; transform:rotate(288deg) translateY(-45px); box-shadow:0 0 25px #00b0ff;"></div>
 
-    <div class="petal" style="background:#39ff14; transform:rotate(144deg) translateY(-30px);
-    box-shadow:0 0 20px #39ff14,0 0 50px #39ff14;"></div>
+<div class="center"></div>
 
-    <div class="petal" style="background:#ff8800; transform:rotate(216deg) translateY(-30px);
-    box-shadow:0 0 20px #ff8800,0 0 50px #ff8800;"></div>
+</div>
 
-    <div class="petal" style="background:#00aaff; transform:rotate(288deg) translateY(-30px);
-    box-shadow:0 0 20px #00aaff,0 0 50px #00aaff;"></div>
-
-    <div class="center"></div>
 </div>
 
 </body>
