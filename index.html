@@ -78,7 +78,6 @@ PARTÍCULAS
     position:absolute;
     border-radius:50%;
     pointer-events:none;
-
     animation:float linear infinite;
 }
 
@@ -132,7 +131,6 @@ ONDAS
     position:absolute;
     border:1px solid rgba(0,255,255,.12);
     border-radius:50%;
-
     animation:ripple 5s linear infinite;
 }
 
@@ -150,7 +148,7 @@ ONDAS
 }
 
 /* =========================
-TÍTULO
+TEXTO
 ========================= */
 
 .title{
@@ -179,7 +177,6 @@ PLANTA
 
 .plant{
     position:absolute;
-
     left:50%;
     bottom:120px;
 
@@ -225,7 +222,7 @@ RAÍCES
     }
 
     to{
-        height:170px;
+        height:160px;
         opacity:.9;
     }
 }
@@ -268,7 +265,7 @@ TALLO
     }
 
     to{
-        height:260px;
+        height:240px;
     }
 }
 
@@ -279,8 +276,8 @@ HOJAS
 .leaf{
     position:absolute;
 
-    width:85px;
-    height:42px;
+    width:78px;
+    height:38px;
 
     border-radius:
     0 100% 0 100%;
@@ -291,12 +288,12 @@ HOJAS
     rgba(0,255,255,.75));
 
     box-shadow:
-    0 0 25px rgba(0,255,170,.8);
+    0 0 20px rgba(0,255,170,.8);
 
     opacity:0;
 
     animation:leafAppear 1.5s ease forwards;
-    animation-delay:3.7s;
+    animation-delay:3.6s;
 }
 
 @keyframes leafAppear{
@@ -318,15 +315,11 @@ FLOR
 .flower{
     position:absolute;
 
-    width:190px;
-    height:190px;
+    width:170px;
+    height:170px;
 
     left:50%;
-
-    /* AQUÍ ESTABA EL ERROR */
-    /* AHORA LA FLOR ESTÁ ARRIBA DEL TALLO */
-
-    top:-360px;
+    top:-320px;
 
     transform:
     translateX(-50%)
@@ -335,7 +328,7 @@ FLOR
     animation:
     flowerAppear 2.5s ease forwards;
 
-    animation-delay:4.2s;
+    animation-delay:4.1s;
 }
 
 @keyframes flowerAppear{
@@ -344,7 +337,7 @@ FLOR
         transform:
         translateX(-50%)
         scale(0)
-        rotate(-20deg);
+        rotate(-15deg);
 
         opacity:0;
     }
@@ -366,15 +359,15 @@ PÉTALOS
 .petal{
     position:absolute;
 
-    width:72px;
-    height:110px;
+    width:68px;
+    height:100px;
 
-    left:59px;
+    left:51px;
     top:35px;
 
     border-radius:50%;
 
-    transform-origin:center bottom;
+    transform-origin:center center;
 
     opacity:.96;
 
@@ -395,16 +388,15 @@ PÉTALOS
 }
 
 /* =========================
-CENTRO PERFECTO
+CENTRO
 ========================= */
 
 .center{
     position:absolute;
 
-    width:52px;
-    height:52px;
+    width:50px;
+    height:50px;
 
-    /* ESTO LO CENTRA REALMENTE */
     left:50%;
     top:50%;
 
@@ -490,19 +482,19 @@ transform:rotate(45deg);">
 
 <div class="stem"></div>
 
-<!-- HOJAS -->
+<!-- HOJAS BIEN POSICIONADAS -->
 
 <div class="leaf"
 style="
-left:-90px;
-top:90px;
-transform:rotate(-28deg);">
+left:-75px;
+top:30px;
+transform:rotate(-30deg);">
 </div>
 
 <div class="leaf"
 style="
-left:10px;
-top:55px;
+left:5px;
+top:-5px;
 transform:rotate(35deg);">
 </div>
 
@@ -519,11 +511,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #ff00ff;
+0 0 25px #ff00ff;
 
 transform:
 rotate(0deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <div class="petal"
@@ -535,11 +527,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #00ffff;
+0 0 25px #00ffff;
 
 transform:
 rotate(60deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <div class="petal"
@@ -551,11 +543,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #76ff03;
+0 0 25px #76ff03;
 
 transform:
 rotate(120deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <div class="petal"
@@ -567,11 +559,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #ff9100;
+0 0 25px #ff9100;
 
 transform:
 rotate(180deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <div class="petal"
@@ -583,11 +575,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #7c4dff;
+0 0 25px #7c4dff;
 
 transform:
 rotate(240deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <div class="petal"
@@ -599,11 +591,11 @@ linear-gradient(to top,
 #ffffff);
 
 box-shadow:
-0 0 28px #00ff99;
+0 0 25px #00ff99;
 
 transform:
 rotate(300deg)
-translateY(-58px);">
+translateY(-35px);">
 </div>
 
 <!-- CENTRO -->
