@@ -20,10 +20,6 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-ESCENA
-========================= */
-
 .scene{
     position:relative;
     width:100%;
@@ -38,9 +34,7 @@ ESCENA
     #000 100%);
 }
 
-/* =========================
-NIEBLA
-========================= */
+/* NIEBLA */
 
 .fog{
     position:absolute;
@@ -70,9 +64,7 @@ NIEBLA
     }
 }
 
-/* =========================
-PARTÍCULAS
-========================= */
+/* PARTÍCULAS */
 
 .particle{
     position:absolute;
@@ -104,9 +96,7 @@ PARTÍCULAS
     }
 }
 
-/* =========================
-SUELO
-========================= */
+/* SUELO */
 
 .ground{
     position:absolute;
@@ -123,9 +113,7 @@ SUELO
     inset 0 0 80px rgba(0,255,255,.06);
 }
 
-/* =========================
-ONDAS
-========================= */
+/* ONDAS */
 
 .ripple{
     position:absolute;
@@ -147,9 +135,7 @@ ONDAS
     }
 }
 
-/* =========================
-TEXTO
-========================= */
+/* TEXTO */
 
 .title{
     position:absolute;
@@ -171,9 +157,7 @@ TEXTO
     z-index:999;
 }
 
-/* =========================
-PLANTA
-========================= */
+/* PLANTA */
 
 .plant{
     position:absolute;
@@ -183,9 +167,7 @@ PLANTA
     transform:translateX(-50%);
 }
 
-/* =========================
-RAÍCES
-========================= */
+/* RAÍCES */
 
 .root{
     position:absolute;
@@ -222,14 +204,15 @@ RAÍCES
     }
 
     to{
-        height:160px;
+        /* AQUÍ ESTABA EL PROBLEMA */
+        /* bajamos las raíces */
+
+        height:90px;
         opacity:.9;
     }
 }
 
-/* =========================
-TALLO
-========================= */
+/* TALLO */
 
 .stem{
     position:absolute;
@@ -269,9 +252,7 @@ TALLO
     }
 }
 
-/* =========================
-FLOR
-========================= */
+/* FLOR */
 
 .flower{
     position:absolute;
@@ -313,9 +294,7 @@ FLOR
     }
 }
 
-/* =========================
-PÉTALOS
-========================= */
+/* PÉTALOS */
 
 .petal{
     position:absolute;
@@ -328,9 +307,7 @@ PÉTALOS
 
     border-radius:50%;
 
-    /* AQUÍ ESTABA EL PROBLEMA */
-    /* quitamos center center */
-    transform-origin:center bottom;
+    transform-origin:center center;
 
     opacity:.96;
 
@@ -350,9 +327,7 @@ PÉTALOS
     transparent 40%);
 }
 
-/* =========================
-CENTRO
-========================= */
+/* CENTRO */
 
 .center{
     position:absolute;
@@ -396,8 +371,6 @@ CENTRO
 
 <div class="ground"></div>
 
-<!-- ONDAS -->
-
 <div class="ripple"
 style="
 width:120px;
@@ -414,8 +387,6 @@ left:47%;
 bottom:10px;
 animation-delay:2s;">
 </div>
-
-<!-- PLANTA -->
 
 <div class="plant">
 
@@ -545,8 +516,6 @@ rotate(300deg)
 translateY(-35px);">
 </div>
 
-<!-- CENTRO -->
-
 <div class="center"></div>
 
 </div>
@@ -556,8 +525,6 @@ translateY(-35px);">
 </div>
 
 <script>
-
-/* PARTÍCULAS */
 
 for(let i=0;i<180;i++){
 
