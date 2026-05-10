@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultra Neon Flowers</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cinematic Neon Flowers</title>
 
 <style>
 
@@ -15,9 +15,9 @@
 
 body{
     overflow:hidden;
-    background:#02020a;
+    background:black;
     height:100vh;
-    font-family:sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 /* =========================
@@ -29,55 +29,154 @@ ESCENA
     width:100%;
     height:100vh;
     overflow:hidden;
+
     background:
     radial-gradient(circle at center,
-    #130022 0%,
-    #070010 35%,
-    #020208 70%,
-    black 100%);
+    #14001f 0%,
+    #090014 30%,
+    #020208 60%,
+    #000 100%);
 }
 
 /* =========================
-NIEBLA
+NIEBLA PROFUNDA
 ========================= */
 
-.fog{
+.fog1,
+.fog2,
+.fog3{
     position:absolute;
     width:200%;
     height:200%;
-    background:
-    radial-gradient(circle,
-    rgba(0,255,255,.08),
-    transparent 60%);
-    animation:fogMove 20s linear infinite alternate;
-    filter:blur(90px);
+    border-radius:50%;
+    filter:blur(120px);
+    mix-blend-mode:screen;
 }
 
-@keyframes fogMove{
+.fog1{
+    background:
+    radial-gradient(circle,
+    rgba(0,255,255,.10),
+    transparent 60%);
+
+    animation:fogMove1 20s infinite alternate;
+}
+
+.fog2{
+    background:
+    radial-gradient(circle,
+    rgba(255,0,255,.10),
+    transparent 60%);
+
+    animation:fogMove2 30s infinite alternate;
+}
+
+.fog3{
+    background:
+    radial-gradient(circle,
+    rgba(0,255,100,.07),
+    transparent 60%);
+
+    animation:fogMove3 25s infinite alternate;
+}
+
+@keyframes fogMove1{
+    from{ transform:translate(-10%,-5%);}
+    to{ transform:translate(10%,5%);}
+}
+
+@keyframes fogMove2{
+    from{ transform:translate(10%,-10%);}
+    to{ transform:translate(-10%,10%);}
+}
+
+@keyframes fogMove3{
+    from{ transform:translate(0%,-10%);}
+    to{ transform:translate(5%,10%);}
+}
+
+/* =========================
+SUELO / AGUA
+========================= */
+
+.ground{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:220px;
+
+    background:
+    linear-gradient(to top,
+    rgba(0,0,0,.95),
+    rgba(0,0,0,.5));
+
+    backdrop-filter:blur(5px);
+
+    box-shadow:
+    inset 0 20px 80px rgba(0,255,255,.05);
+}
+
+/* =========================
+REFLEJO AGUA
+========================= */
+
+.water-reflection{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:160px;
+
+    background:
+    linear-gradient(to top,
+    rgba(0,255,255,.06),
+    transparent);
+
+    opacity:.8;
+}
+
+/* =========================
+ONDAS
+========================= */
+
+.ripple{
+    position:absolute;
+    border:2px solid rgba(0,255,255,.15);
+    border-radius:50%;
+    animation:ripple 4s linear infinite;
+}
+
+@keyframes ripple{
+
     from{
-        transform:translate(-10%,-10%);
+        transform:scale(.2);
+        opacity:.8;
     }
+
     to{
-        transform:translate(10%,10%);
+        transform:scale(3);
+        opacity:0;
     }
 }
 
 /* =========================
-PARTÍCULAS
+PARTÍCULAS LEJANAS
 ========================= */
 
 .particle{
     position:absolute;
     border-radius:50%;
-    pointer-events:none;
     animation:float linear infinite;
+    pointer-events:none;
 }
 
 @keyframes float{
+
     from{
         transform:
         translateY(100vh)
+        translateX(0px)
         scale(0);
+
         opacity:0;
     }
 
@@ -88,7 +187,9 @@ PARTÍCULAS
     to{
         transform:
         translateY(-120vh)
-        scale(1.5);
+        translateX(40px)
+        scale(1.8);
+
         opacity:0;
     }
 }
@@ -100,16 +201,21 @@ LLUVIA
 .rain{
     position:absolute;
     width:2px;
-    border-radius:50px;
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
     transparent,
     rgba(0,255,255,.9));
 
+    border-radius:50px;
+
     opacity:.5;
+
     animation:rain linear infinite;
 }
 
 @keyframes rain{
+
     from{
         transform:translateY(-120vh);
     }
@@ -120,66 +226,47 @@ LLUVIA
 }
 
 /* =========================
-SUELO
-========================= */
-
-.ground{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:180px;
-
-    background:
-    radial-gradient(circle at center,
-    rgba(0,255,255,.08),
-    transparent 70%),
-
-    linear-gradient(to top,
-    #020202,
-    #050505);
-
-    box-shadow:
-    0 -20px 80px rgba(0,255,255,.1);
-}
-
-/* =========================
-REFLEJO AGUA
-========================= */
-
-.water{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:120px;
-
-    background:
-    linear-gradient(to top,
-    rgba(0,255,255,.06),
-    transparent);
-
-    backdrop-filter:blur(5px);
-}
-
-/* =========================
-PLANTA
+PLANTA CENTRAL
 ========================= */
 
 .plant{
     position:absolute;
-    bottom:80px;
-    transform-style:preserve-3d;
+    left:50%;
+    bottom:120px;
+
+    transform:
+    translateX(-50%);
+
+    animation:
+    plantFloat 6s ease-in-out infinite;
+}
+
+@keyframes plantFloat{
+
+    0%,100%{
+        transform:
+        translateX(-50%)
+        translateY(0px);
+    }
+
+    50%{
+        transform:
+        translateX(-50%)
+        translateY(-12px);
+    }
 }
 
 /* =========================
-RAÍCES
+RAÍCES ORGÁNICAS
 ========================= */
 
 .root{
     position:absolute;
-    bottom:-20px;
-    left:50%;
-    width:4px;
-    height:160px;
+    bottom:-40px;
+    left:0;
+
+    height:220px;
+    border-radius:50px;
 
     background:
     linear-gradient(to bottom,
@@ -187,24 +274,12 @@ RAÍCES
     #00ffff);
 
     transform-origin:top;
-    border-radius:50px;
 
-    box-shadow:
-    0 0 10px #ff00ff,
-    0 0 25px #00ffff;
+    filter:
+    blur(.3px)
+    drop-shadow(0 0 12px #ff00ff);
 
-    animation:rootGrow 5s ease forwards;
-}
-
-@keyframes rootGrow{
-    from{
-        height:0;
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
+    opacity:.8;
 }
 
 /* =========================
@@ -213,164 +288,196 @@ TALLO
 
 .stem{
     position:absolute;
-    bottom:0;
     left:50%;
-    width:8px;
+    bottom:0;
+
+    width:10px;
     height:420px;
+
+    border-radius:100px;
+
+    background:
+    linear-gradient(to top,
+    #042,
+    #00ff99,
+    #ccffcc);
+
+    transform:
+    translateX(-50%);
+
+    box-shadow:
+    0 0 25px #00ff99,
+    0 0 60px #00ff99;
+}
+
+/* =========================
+RAMAS
+========================= */
+
+.branch{
+    position:absolute;
+    width:6px;
+    height:120px;
 
     border-radius:50px;
 
     background:
     linear-gradient(to top,
-    #041,
-    #0fa,
-    #9ff);
-
-    transform-origin:bottom;
+    #00ff99,
+    #99ffee);
 
     box-shadow:
-    0 0 20px #00ff99,
-    0 0 40px #00ff99;
-
-    animation:stemGrow 4s ease forwards;
-}
-
-@keyframes stemGrow{
-    from{
-        transform:
-        translateX(-50%)
-        scaleY(0);
-    }
-
-    to{
-        transform:
-        translateX(-50%)
-        scaleY(1);
-    }
+    0 0 18px #00ff99;
 }
 
 /* =========================
-HOJAS
+HOJAS REALISTAS
 ========================= */
 
 .leaf{
     position:absolute;
-    width:90px;
-    height:45px;
 
-    background:
-    linear-gradient(135deg,
-    #00ff99,
-    #00ffff);
+    width:120px;
+    height:60px;
 
     border-radius:
     0 100% 0 100%;
 
-    opacity:.9;
+    overflow:hidden;
+
+    background:
+    linear-gradient(135deg,
+    rgba(0,255,120,.9),
+    rgba(0,255,255,.7));
 
     box-shadow:
-    0 0 20px #00ffcc;
+    0 0 25px rgba(0,255,150,.8);
 
-    animation:leafGlow 4s ease-in-out infinite;
+    backdrop-filter:blur(2px);
+
+    opacity:.95;
 }
 
-@keyframes leafGlow{
-    0%,100%{
-        filter:brightness(1);
-    }
+.leaf::after{
 
-    50%{
-        filter:brightness(1.5);
-    }
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(to right,
+    transparent,
+    rgba(255,255,255,.5),
+    transparent);
+
+    transform:rotate(25deg);
 }
 
 /* =========================
-FLOR
+FLOR CINEMÁTICA
 ========================= */
 
 .flower{
     position:absolute;
-    width:220px;
-    height:220px;
-    left:50%;
-    top:-180px;
 
-    transform-style:preserve-3d;
+    width:320px;
+    height:320px;
+
+    left:50%;
+    top:-240px;
+
+    transform:
+    translateX(-50%);
 
     animation:
-    flowerAppear 5s ease forwards,
-    rotateFlower 16s linear infinite;
+    flowerBreath 8s ease-in-out infinite;
 }
 
-@keyframes flowerAppear{
+@keyframes flowerBreath{
 
-    0%{
-        opacity:0;
-        transform:
-        translateX(-50%)
-        scale(.1)
-        rotateX(90deg);
-    }
-
-    100%{
-        opacity:1;
+    0%,100%{
         transform:
         translateX(-50%)
         scale(1)
-        rotateX(0deg);
-    }
-}
-
-@keyframes rotateFlower{
-    from{
-        transform:
-        translateX(-50%)
-        rotateY(0deg);
+        rotate(0deg);
     }
 
-    to{
+    50%{
         transform:
         translateX(-50%)
-        rotateY(360deg);
+        scale(1.03)
+        rotate(2deg);
     }
 }
 
 /* =========================
-PÉTALOS
+PÉTALOS REALISTAS
 ========================= */
 
 .petal{
     position:absolute;
-    width:90px;
-    height:150px;
 
-    left:65px;
-    top:20px;
+    width:120px;
+    height:180px;
 
-    border-radius:50%;
+    left:100px;
+    top:40px;
+
+    border-radius:
+    50% 50% 45% 45%;
 
     transform-origin:center bottom;
 
+    backdrop-filter:blur(3px);
+
     opacity:.95;
 
-    backdrop-filter:blur(2px);
+    overflow:hidden;
+}
 
-    filter:
-    drop-shadow(0 0 25px currentColor);
+.petal::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(255,255,255,.95),
+    transparent 40%);
+
+    mix-blend-mode:screen;
+}
+
+.petal::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(to bottom,
+    transparent,
+    rgba(255,255,255,.3));
+
+    filter:blur(12px);
 }
 
 /* =========================
-CENTRO
+CENTRO FLOR
 ========================= */
 
 .center{
     position:absolute;
 
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
 
-    left:80px;
-    top:80px;
+    left:120px;
+    top:120px;
 
     border-radius:50%;
 
@@ -378,44 +485,57 @@ CENTRO
     radial-gradient(circle,
     #fff,
     #ffe600,
-    #ff9900);
+    #ff8800);
+
+    z-index:50;
 
     box-shadow:
     0 0 30px #fff176,
     0 0 80px #ffeb3b,
-    0 0 150px #ff9800;
-
-    z-index:100;
+    0 0 180px #ff9800;
 }
 
 /* =========================
-BRILLOS
+ESTAMBRES
 ========================= */
 
-.glow{
+.stamen{
     position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
 
-    background:
-    radial-gradient(circle,
-    rgba(255,0,255,.15),
-    transparent 70%);
+    width:2px;
+    height:60px;
 
-    filter:blur(80px);
+    background:white;
 
-    animation:pulse 8s infinite alternate;
+    left:159px;
+    top:110px;
+
+    transform-origin:bottom;
+
+    opacity:.9;
+
+    box-shadow:
+    0 0 10px white;
 }
 
-@keyframes pulse{
-    from{
-        transform:scale(1);
-    }
+.stamen::after{
 
-    to{
-        transform:scale(1.3);
-    }
+    content:"";
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    top:-4px;
+    left:-3px;
+
+    box-shadow:
+    0 0 12px white;
 }
 
 /* =========================
@@ -425,17 +545,19 @@ TEXTO
 .title{
     position:absolute;
     top:30px;
+
     width:100%;
     text-align:center;
 
-    color:white;
     font-size:4rem;
     letter-spacing:8px;
+
+    color:white;
 
     text-shadow:
     0 0 20px #00ffff,
     0 0 40px #ff00ff,
-    0 0 80px #00ffff;
+    0 0 120px #00ffff;
 
     z-index:999;
 }
@@ -447,54 +569,108 @@ TEXTO
 
 <div class="scene">
 
-<div class="fog"></div>
+<div class="fog1"></div>
+<div class="fog2"></div>
+<div class="fog3"></div>
 
 <div class="title">
-🌸 ULTRA NEON FLOWERS 🌸
+🌸 CINEMATIC NEON FLOWERS 🌸
 </div>
 
-<div class="glow"></div>
-
-<!-- SUELO -->
 <div class="ground"></div>
-<div class="water"></div>
+<div class="water-reflection"></div>
+
+<!-- ONDAS -->
+<div class="ripple"
+style="
+width:120px;
+height:120px;
+left:50%;
+bottom:40px;">
+</div>
+
+<div class="ripple"
+style="
+width:180px;
+height:180px;
+left:48%;
+bottom:20px;
+animation-delay:2s;">
+</div>
 
 <!-- PLANTA -->
-<div class="plant" style="left:50%;">
+<div class="plant">
 
 <!-- RAÍCES -->
 <div class="root"
-style="transform:rotate(-40deg);"></div>
+style="
+width:5px;
+transform:
+rotate(-55deg);">
+</div>
 
 <div class="root"
-style="transform:rotate(-15deg);"></div>
+style="
+width:4px;
+transform:
+rotate(-25deg);">
+</div>
 
 <div class="root"
-style="transform:rotate(15deg);"></div>
+style="
+width:6px;
+transform:
+rotate(20deg);">
+</div>
 
 <div class="root"
-style="transform:rotate(40deg);"></div>
+style="
+width:4px;
+transform:
+rotate(50deg);">
+</div>
 
 <!-- TALLO -->
 <div class="stem"></div>
 
+<!-- RAMAS -->
+<div class="branch"
+style="
+left:-40px;
+top:160px;
+transform:
+rotate(-35deg);">
+</div>
+
+<div class="branch"
+style="
+left:40px;
+top:90px;
+transform:
+rotate(35deg);">
+</div>
+
 <!-- HOJAS -->
 <div class="leaf"
 style="
-left:-90px;
-bottom:150px;
-transform:rotate(-35deg);">
+left:-150px;
+top:180px;
+transform:
+rotate(-25deg);">
 </div>
 
 <div class="leaf"
 style="
-left:10px;
-bottom:240px;
-transform:rotate(35deg);">
+left:30px;
+top:110px;
+transform:
+rotate(35deg);">
 </div>
 
 <!-- FLOR -->
 <div class="flower">
+
+<!-- pétalos capa exterior -->
 
 <div class="petal"
 style="
@@ -504,11 +680,12 @@ linear-gradient(to top,
 #ff66ff,
 #ffffff);
 
-color:#ff00ff;
+box-shadow:
+0 0 30px #ff00ff;
 
 transform:
 rotate(0deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -519,11 +696,28 @@ linear-gradient(to top,
 #66ffff,
 #ffffff);
 
-color:#00ffff;
+box-shadow:
+0 0 30px #00ffff;
 
 transform:
 rotate(45deg)
-translateY(-65px);">
+translateY(-90px);">
+</div>
+
+<div class="petal"
+style="
+background:
+linear-gradient(to top,
+#7c4dff,
+#c2a1ff,
+#ffffff);
+
+box-shadow:
+0 0 30px #7c4dff;
+
+transform:
+rotate(90deg)
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -534,26 +728,12 @@ linear-gradient(to top,
 #99ffcc,
 #ffffff);
 
-color:#00ff99;
-
-transform:
-rotate(90deg)
-translateY(-65px);">
-</div>
-
-<div class="petal"
-style="
-background:
-linear-gradient(to top,
-#7c4dff,
-#b388ff,
-#ffffff);
-
-color:#7c4dff;
+box-shadow:
+0 0 30px #00ff99;
 
 transform:
 rotate(135deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -564,11 +744,12 @@ linear-gradient(to top,
 #ff8a80,
 #ffffff);
 
-color:#ff1744;
+box-shadow:
+0 0 30px #ff1744;
 
 transform:
 rotate(180deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -579,11 +760,12 @@ linear-gradient(to top,
 #84ffff,
 #ffffff);
 
-color:#00e5ff;
+box-shadow:
+0 0 30px #00e5ff;
 
 transform:
 rotate(225deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -594,11 +776,12 @@ linear-gradient(to top,
 #ccff90,
 #ffffff);
 
-color:#76ff03;
+box-shadow:
+0 0 30px #76ff03;
 
 transform:
 rotate(270deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
 <div class="petal"
@@ -609,14 +792,34 @@ linear-gradient(to top,
 #ffd180,
 #ffffff);
 
-color:#ff9100;
+box-shadow:
+0 0 30px #ff9100;
 
 transform:
 rotate(315deg)
-translateY(-65px);">
+translateY(-90px);">
 </div>
 
+<!-- CENTRO -->
 <div class="center"></div>
+
+<!-- ESTAMBRES -->
+<script>
+
+for(let i=0;i<26;i++){
+
+    let s=document.createElement('div');
+
+    s.classList.add('stamen');
+
+    s.style.transform=
+    `rotate(${i*14}deg)`;
+
+    document.querySelector('.flower')
+    .appendChild(s);
+}
+
+</script>
 
 </div>
 </div>
@@ -626,43 +829,55 @@ translateY(-65px);">
 <script>
 
 /* =========================
-PARTÍCULAS
+PARTÍCULAS PROFUNDIDAD
 ========================= */
 
-for(let i=0;i<180;i++){
+for(let i=0;i<250;i++){
 
     const p=document.createElement('div');
 
     p.classList.add('particle');
 
-    let size=Math.random()*4+1;
+    let size=Math.random()*5+1;
 
     p.style.width=size+'px';
     p.style.height=size+'px';
 
     p.style.left=Math.random()*100+'vw';
 
-    p.style.background=
-    ['#00ffff','#ff00ff','#ffffff','#76ff03']
-    [Math.floor(Math.random()*4)];
+    let colors=[
+    '#00ffff',
+    '#ff00ff',
+    '#ffffff',
+    '#76ff03',
+    '#ff8800'
+    ];
+
+    let c=
+    colors[Math.floor(Math.random()*colors.length)];
+
+    p.style.background=c;
 
     p.style.boxShadow=
-    `0 0 15px ${p.style.background}`;
+    `0 0 18px ${c}`;
 
     p.style.animationDuration=
-    (6+Math.random()*12)+'s';
+    (8+Math.random()*18)+'s';
 
     p.style.animationDelay=
     Math.random()*10+'s';
+
+    p.style.filter=
+    `blur(${Math.random()*1.5}px)`;
 
     document.body.appendChild(p);
 }
 
 /* =========================
-LLUVIA
+LLUVIA CINEMÁTICA
 ========================= */
 
-for(let i=0;i<120;i++){
+for(let i=0;i<180;i++){
 
     const rain=document.createElement('div');
 
@@ -672,13 +887,16 @@ for(let i=0;i<120;i++){
     Math.random()*100+'vw';
 
     rain.style.height=
-    Math.random()*120+40+'px';
+    Math.random()*140+40+'px';
 
     rain.style.animationDuration=
-    (.6+Math.random()*1.2)+'s';
+    (.5+Math.random()*1.2)+'s';
 
     rain.style.animationDelay=
     Math.random()*5+'s';
+
+    rain.style.opacity=
+    Math.random()*.5+.1;
 
     document.body.appendChild(rain);
 }
