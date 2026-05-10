@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cinematic Neon Flowers</title>
+<title>FELIZ DÍA</title>
 
 <style>
 
@@ -159,7 +159,7 @@ ONDAS
 }
 
 /* =========================
-PARTÍCULAS LEJANAS
+PARTÍCULAS
 ========================= */
 
 .particle{
@@ -226,7 +226,7 @@ LLUVIA
 }
 
 /* =========================
-PLANTA CENTRAL
+PLANTA
 ========================= */
 
 .plant{
@@ -257,7 +257,7 @@ PLANTA CENTRAL
 }
 
 /* =========================
-RAÍCES ORGÁNICAS
+RAÍCES
 ========================= */
 
 .root{
@@ -331,7 +331,7 @@ RAMAS
 }
 
 /* =========================
-HOJAS REALISTAS
+HOJAS
 ========================= */
 
 .leaf{
@@ -375,7 +375,7 @@ HOJAS REALISTAS
 }
 
 /* =========================
-FLOR CINEMÁTICA
+FLOR
 ========================= */
 
 .flower{
@@ -412,7 +412,7 @@ FLOR CINEMÁTICA
 }
 
 /* =========================
-PÉTALOS REALISTAS
+PÉTALOS
 ========================= */
 
 .petal{
@@ -467,7 +467,7 @@ PÉTALOS REALISTAS
 }
 
 /* =========================
-CENTRO FLOR
+CENTRO
 ========================= */
 
 .center{
@@ -574,13 +574,12 @@ TEXTO
 <div class="fog3"></div>
 
 <div class="title">
-🌸 CINEMATIC NEON FLOWERS 🌸
+🌸 FELIZ DÍA 🌸
 </div>
 
 <div class="ground"></div>
 <div class="water-reflection"></div>
 
-<!-- ONDAS -->
 <div class="ripple"
 style="
 width:120px;
@@ -598,10 +597,8 @@ bottom:20px;
 animation-delay:2s;">
 </div>
 
-<!-- PLANTA -->
 <div class="plant">
 
-<!-- RAÍCES -->
 <div class="root"
 style="
 width:5px;
@@ -630,10 +627,8 @@ transform:
 rotate(50deg);">
 </div>
 
-<!-- TALLO -->
 <div class="stem"></div>
 
-<!-- RAMAS -->
 <div class="branch"
 style="
 left:-40px;
@@ -650,7 +645,6 @@ transform:
 rotate(35deg);">
 </div>
 
-<!-- HOJAS -->
 <div class="leaf"
 style="
 left:-150px;
@@ -667,10 +661,8 @@ transform:
 rotate(35deg);">
 </div>
 
-<!-- FLOR -->
+<!-- FLOR CORREGIDA -->
 <div class="flower">
-
-<!-- pétalos capa exterior -->
 
 <div class="petal"
 style="
@@ -685,7 +677,7 @@ box-shadow:
 
 transform:
 rotate(0deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -701,7 +693,7 @@ box-shadow:
 
 transform:
 rotate(45deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -717,7 +709,7 @@ box-shadow:
 
 transform:
 rotate(90deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -733,7 +725,7 @@ box-shadow:
 
 transform:
 rotate(135deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -749,7 +741,7 @@ box-shadow:
 
 transform:
 rotate(180deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -765,7 +757,7 @@ box-shadow:
 
 transform:
 rotate(225deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -781,7 +773,7 @@ box-shadow:
 
 transform:
 rotate(270deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
 <div class="petal"
@@ -797,13 +789,17 @@ box-shadow:
 
 transform:
 rotate(315deg)
-translateY(-90px);">
+translateY(90px);">
 </div>
 
-<!-- CENTRO -->
 <div class="center"></div>
 
-<!-- ESTAMBRES -->
+</div>
+
+</div>
+
+</div>
+
 <script>
 
 for(let i=0;i<26;i++){
@@ -818,19 +814,6 @@ for(let i=0;i<26;i++){
     document.querySelector('.flower')
     .appendChild(s);
 }
-
-</script>
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-/* =========================
-PARTÍCULAS PROFUNDIDAD
-========================= */
 
 for(let i=0;i<250;i++){
 
@@ -872,10 +855,6 @@ for(let i=0;i<250;i++){
 
     document.body.appendChild(p);
 }
-
-/* =========================
-LLUVIA CINEMÁTICA
-========================= */
 
 for(let i=0;i<180;i++){
 
