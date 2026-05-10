@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flores Neon</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Fondo animado */
+.background{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at center, #050505 0%, #000 70%);
+}
+
+/* Raíces */
+.roots{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.root{
+    position:absolute;
+    bottom:-200px;
+    width:4px;
+    background:linear-gradient(to top,#111,#333,#00ff88);
+    border-radius:50px;
+    transform-origin:bottom;
+    animation:grow 5s ease-in-out infinite alternate;
+    box-shadow:0 0 10px #00ff88;
+}
+
+@keyframes grow{
+    from{
+        height:0;
+        opacity:0;
+    }
+    to{
+        height:120vh;
+        opacity:1;
+    }
+}
+
+/* Flores */
+.flower{
+    position:absolute;
+    width:120px;
+    height:120px;
+    animation:float 5s ease-in-out infinite;
+}
+
+/* pétalos */
+.petal{
+    position:absolute;
+    width:50px;
+    height:80px;
+    border-radius:50%;
+    top:20px;
+    left:35px;
+    transform-origin:center bottom;
+    opacity:0.9;
+    filter:blur(0.5px);
+}
+
+/* centro */
+.center{
+    position:absolute;
+    width:35px;
+    height:35px;
+    background:#fff700;
+    border-radius:50%;
+    top:42px;
+    left:42px;
+    z-index:10;
+    box-shadow:
+    0 0 20px #fff700,
+    0 0 40px #fff700,
+    0 0 80px #fff700;
+}
+
+/* Animación */
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px) scale(1);
+    }
+    50%{
+        transform:translateY(-20px) scale(1.05);
+    }
+}
+
+/* Texto */
+.title{
+    position:absolute;
+    top:30px;
+    color:white;
+    font-size:2rem;
+    letter-spacing:4px;
+    text-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
+    z-index:100;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="title">🌸 FLORES NEON 🌸</div>
+
+<!-- Raíces -->
+<div class="roots">
+    <div class="root" style="left:10%; animation-delay:0s; transform:rotate(-10deg);"></div>
+    <div class="root" style="left:20%; animation-delay:1s; transform:rotate(12deg);"></div>
+    <div class="root" style="left:35%; animation-delay:2s; transform:rotate(-5deg);"></div>
+    <div class="root" style="left:50%; animation-delay:1.5s; transform:rotate(8deg);"></div>
+    <div class="root" style="left:65%; animation-delay:0.5s; transform:rotate(-15deg);"></div>
+    <div class="root" style="left:80%; animation-delay:2.5s; transform:rotate(10deg);"></div>
+</div>
+
+<!-- Flores -->
+<div class="flower" style="top:20%; left:20%;">
+    <div class="petal" style="background:#ff00ff; transform:rotate(0deg) translateY(-30px);
+    box-shadow:0 0 20px #ff00ff,0 0 50px #ff00ff;"></div>
+
+    <div class="petal" style="background:#00ffff; transform:rotate(72deg) translateY(-30px);
+    box-shadow:0 0 20px #00ffff,0 0 50px #00ffff;"></div>
+
+    <div class="petal" style="background:#00ff66; transform:rotate(144deg) translateY(-30px);
+    box-shadow:0 0 20px #00ff66,0 0 50px #00ff66;"></div>
+
+    <div class="petal" style="background:#ff0066; transform:rotate(216deg) translateY(-30px);
+    box-shadow:0 0 20px #ff0066,0 0 50px #ff0066;"></div>
+
+    <div class="petal" style="background:#9900ff; transform:rotate(288deg) translateY(-30px);
+    box-shadow:0 0 20px #9900ff,0 0 50px #9900ff;"></div>
+
+    <div class="center"></div>
+</div>
+
+<div class="flower" style="top:55%; left:60%; animation-delay:2s;">
+    <div class="petal" style="background:#00ffff; transform:rotate(0deg) translateY(-30px);
+    box-shadow:0 0 20px #00ffff,0 0 50px #00ffff;"></div>
+
+    <div class="petal" style="background:#ff00ff; transform:rotate(72deg) translateY(-30px);
+    box-shadow:0 0 20px #ff00ff,0 0 50px #ff00ff;"></div>
+
+    <div class="petal" style="background:#39ff14; transform:rotate(144deg) translateY(-30px);
+    box-shadow:0 0 20px #39ff14,0 0 50px #39ff14;"></div>
+
+    <div class="petal" style="background:#ff8800; transform:rotate(216deg) translateY(-30px);
+    box-shadow:0 0 20px #ff8800,0 0 50px #ff8800;"></div>
+
+    <div class="petal" style="background:#00aaff; transform:rotate(288deg) translateY(-30px);
+    box-shadow:0 0 20px #00aaff,0 0 50px #00aaff;"></div>
+
+    <div class="center"></div>
+</div>
+
+</body>
+</html>
